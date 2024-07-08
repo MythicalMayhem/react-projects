@@ -1,24 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import Input from './components/input.jsx'
+import Nav from './components/nav.jsx';
+import TaskList from './components/taskList.jsx';
+import { useState } from 'react';
 
 function App() {
+  const [tasks,setTasks] = useState([])
+  const [id,setId] = useState(0)
+  const [selected,setSelected] = useState([])
+
+  function addTask(des) { 
+    setTasks([...tasks,{'id':id,'desc':des}])
+    setId(id+1)
+  }
+  function handleDelete(e) {
+    alert(e)
+  }
+  function handleImportant(e){
+
+  }
+  function select(ind,e) {
+    if (e.target.checked) { 
+      alert(ind+' checked')
+      setSelected([...selected,ind])
+    }else {
+      alert(ind+'notchecked')
+      setSelected(selected.filter((value,i)=>{ return i !==ind}))
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className='main'>
+      <Nav />
+      <Input    add={addTask} />
+      <TaskList tasks={tasks} select={select} />
+      <footer ></footer>
+    </main>
   );
 }
 
