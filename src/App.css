@@ -1,36 +1,43 @@
-#root,html,body {  
-
-  background-color: #303030;
-  margin: 0; 
-  height: 100%;
-  width: 100%;
- 
+#root,
+html,
+body {
+	background-color: #3e7f8f;
+	margin: 0; 
+	width: 100%;
+  height: fit-content;
 }
 
-#root{ 
-
-  display: flex;
+#root {
+  margin-top: 10% ;
+  display: flex; 
+  align-items: center;
   flex-direction: column;
+}
+
+a { text-decoration: none; }
+
+nav {
+	height: 10%;
+  width: 50%;
+  min-width: 320px;
+  display: flex;
   justify-content: center;
   align-items: center;
-
+  flex-direction: row;
+  background: #bc9292;
+  font-size: xx-large;
+  margin-bottom: 5%;
 }
 
-.main::-webkit-scrollbar{
-  width: 0;
+.shopItem {
+  height: 400px;
+  width: 300px;
 }
-.main {
 
+.shopItems {
   display: flex;
-  flex-direction: column; 
+  justify-content: center;
   align-items: center;
-  height: 80%;
-  width: 100%;
-  overflow: scroll;
-}
-
-li {
-  color: white;
-  font-size: larger;
-  margin-bottom:10px ;
+  flex-wrap: wrap;
+  width: 80%;
 }
