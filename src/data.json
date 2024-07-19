@@ -1,0 +1,58 @@
+{
+    "films": {
+        "1": {
+            "title": "Star Wars: Episode IV - A New Hope",
+            "release_date": "1977-05-25",
+            "duration": "121 minutes",
+            "genre": "Action, Adventure, Fantasy"
+        },
+        "2": {
+            "title": "Star Wars: Episode V - The Empire Strikes Back",
+            "release_date": "1980-05-17",
+            "duration": "120 minutes",
+            "genre": "Action, Adventure, Fantasy"
+        },
+        "3": {
+            "title": "Star Wars: Episode VI - Return of the Jedi",
+            "release_date": "1983-05-25",
+            "duration": "180 minutes",
+            "genre": "Action, Adventure, Fantasy"
+        },
+        "4": {
+            "title": "Inception",
+            "release_date": "2010-07-16",
+            "duration": "148 minutes",
+            "genre": "Action, Adventure, Sci-Fi"
+        },
+        "5": {
+            "title": "Interstellar",
+            "release_date": "2014-10-02",
+            "duration": "169 minutes",
+            "genre": "Adventure, Drama, Sci-Fi"
+        },
+        "6": {
+            "title": "Spider-man",
+            "release_date": "2002-04-25",
+            "duration": "121 minutes",
+            "genre": "Action, Adventure, Comedy, Sci-Fi"
+        },
+        "7": {
+            "title": "Spider-Man: No Way Home",
+            "release_year": 2021,
+            "duration": "2 hours and 28 minutes",
+            "genre": "Action, Adventure, Sci-Fi"
+        },
+        "8": {
+            "title": "Spider-Man: Into the Spider-Verse",
+            "release_year": 2018,
+            "duration": "1 hour and 57 minutes",
+            "genre": "Animation, Action, Adventure"
+        },
+        "9": {
+            "title": "The Batman",
+            "release_year": 2022,
+            "duration": "2 hours and 55 minutes",
+            "genre": "Action, Crime, Drama"
+        }
+    }
+}

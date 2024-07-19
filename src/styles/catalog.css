@@ -1,0 +1,31 @@
+
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.main aside {
+    width: 28%;
+    background-color: darkgray;
+}
+
+.main section {
+    background-color: darkgray;
+    width: 71%;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+}
+
+.main section .card {
+    line-height: 20px;
+    flex-grow: 0.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
