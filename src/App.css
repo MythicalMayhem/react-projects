@@ -1,10 +1,3 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
- 
-}
 #root,
 body,
 html {
@@ -13,19 +6,3 @@ html {
   height: 100%;
   width: 100%;
 }
-#root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.form form {
-  height: 500px;
-  width: 500px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: palevioletred;
-
-} 

@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-import { db } from "../lib/firebase"
+import { db } from "../../lib/firebase"
 import { doc, setDoc } from "firebase/firestore";
 
 function Signup() {

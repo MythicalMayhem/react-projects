@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import './App.css';
-import Signin from './components/signIn';
-import Signup from './components/signUp';
-import { currentUser } from './stores/user';
+
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from './lib/firebase';
 
+import { currentUser } from './stores/user';
+
+import './App.css';
+import Auth from './components/auth/main.jsx';
+import Messenger from './components/messenger/main.jsx';
 function App() {
   const { user, setUserData } = currentUser()
 
@@ -16,21 +18,19 @@ function App() {
   }, [setUserData])
 
 
+  // eslint-disable-next-line no-unused-vars
   const handleLogout = () => {
     signOut(auth)
       .then(() => { setUserData(null) })
       .catch(console.log)
   }
 
-
-
-
   return (
-    <div className='container' >
-      {console.log(user, 'render')}
-      {user === null ? <> <Signin /> <Signup /></> : <button onClick={handleLogout}> Logout</button>}
+    <>
+      {/* {user === null ? <> <Auth /> </> : <button onClick={handleLogout}> Logout</button>} */}
+      {user === null ? <> <Auth /> </> : <Messenger />}
+    </>
 
-    </div >
   )
 
 
