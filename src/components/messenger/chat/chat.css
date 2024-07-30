@@ -1,0 +1,73 @@
+.chat {
+    color: white;
+    background-color: #454545;
+    width: 30%;
+    height: 80vh;
+    min-width: 320px;
+    padding: 7px;
+    border-radius: 0.8em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap; 
+    align-items: center;
+    justify-content: space-between;
+    .recipient {
+        width: 100%;
+        border-radius: 12cm;
+        background-color: #282828;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap; 
+        align-items: center;
+        width: 95%;
+        padding: 7px 14px;
+        gap: 10px;
+        .pfp {
+            height: 65px;
+            width:  65px;
+        }
+    }
+    .texts{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items:     flex-start;
+        .message {
+            background-color: black;
+            margin: 5px  ;
+            padding: 12px 10px ;
+            border-radius: 1rem;
+            width: 80%;
+            &.sent {
+                border-bottom-right-radius: 0;
+                align-self: flex-end;
+            }
+            &.received {                
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+    .input {
+        width: 100%;
+        border-radius: 0.5em;
+        background-color: #282828;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.1rem;
+        padding-bottom: 0.75rem;
+        
+        .icon {
+            height: 50px;
+        }
+        input {
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+            margin: 0;
+            padding: 0;
+            height: 2.5rem;
+        }
+    }
+}

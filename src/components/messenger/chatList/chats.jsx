@@ -7,7 +7,7 @@ export const Chats = () => {
         'Marian Mullins',
         'Winifred Wells',
     ]
-    const chat = (name, key) => <div key={key} className="chat"><img src="logo192.png" alt="" />{name}</div>
+    const chat = (name, key) => <div key={key} className="chatrow"><img src="logo192.png" alt="" />{name}</div>
     return (
         <div className="chats">
             {chats.map((name, index) => chat(name, index))}

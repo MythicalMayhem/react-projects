@@ -1,9 +1,12 @@
+import './chat.css'
 export const Texts = () => {
-    const userid = 1
-    const receipiantid = 2
-
+    let userid = 1
+    const receipiantid = 0
     // eslint-disable-next-line no-unused-vars
-    const message = (content, key) => <div key={key} className={"message " + userid === receipiantid ? 'sent' : 'joe'}> {content}</div >
+    const message = (content, key) => {
+        userid = (userid+1) % 2;
+        return <div key={key} className={"message " + (userid === receipiantid ? 'sent' : 'received')}> {content}</div >
+    }
     const messages = [
         'wide stay becoming body began ask chemical modern grew salt month exactly broke though hospital within scientific jump explanation still instance cent related feature',
         'mistake natural story wash sea necessary sit way toward depend boat summer read alike hill package managed lovely had dawn monkey courage our essential',
