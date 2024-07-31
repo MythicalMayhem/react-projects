@@ -3,7 +3,7 @@ import { collection, query, where, and, getDocs } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 
 export const Search = () => {
-    const searchresult = (res) => <div className="chatrow"><img className="pfp" src={res.avatar || "logo192.png"} alt="" /><span>{res.username}</span></div>
+
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
 
@@ -17,21 +17,26 @@ export const Search = () => {
         getDocs(q).then((snapshot) => {
             if (cancel) return;
             const res = []
-            snapshot.forEach((doc) => { res.push(doc.data()) }); 
+            snapshot.forEach((doc) => { res.push(doc.data()) });
             setResults(res)
+            console.log('res', res)
         })
-
-
-
         return () => cancel = true;
     }, [search])
 
     const handleSearch = async (e) => {
         const s = e.target.value.toLowerCase()
         setSearch(s)
-
-
     }
+    const handleAdd = (id) => {
+        console.log('add' + id)
+    }
+    const searchresult = (res) =>
+        <div className="chatrow" onClick={() => handleAdd(res.id)}>
+            <img className="pfp" src={res.avatar || "logo192.png"} alt="" />
+            <span>{res.username}</span>
+        </div>
+
     return (
         <div className="search  default-flex">
             <input type="text" placeholder="Search for users..." value={search} onChange={handleSearch} />
