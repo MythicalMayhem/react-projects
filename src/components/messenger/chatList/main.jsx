@@ -1,13 +1,13 @@
 import { UserInfo } from "./userInfo";
 import { Search } from "./search";
-import { Chats } from "./chats";
-
+import { Users } from "./users";
+import "./chatList.css";
 function ChatList() {
     return (
-        <div className="chatList" >
+        <div className="chatList  " >
             <UserInfo />
             <Search />
-            <Chats />
+            <Users />
         </div >
     );
 }
