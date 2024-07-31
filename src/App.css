@@ -5,3 +5,16 @@ html {
   height: 100%;
   width: 100%;
 } 
+.floats {
+  button {
+    height: 1cm;
+  }
+  top: 1rem;
+  left : 1rem;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}

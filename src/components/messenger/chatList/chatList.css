@@ -2,7 +2,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     color: white;
     background-color: #454545;
-    width: 20vw;  
+    width: 20vw;
     overflow: scroll;
     min-width: 320px;
     padding: 7px;
@@ -21,7 +21,6 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-
         .pfp {
             height: 5rem;
         }
@@ -34,12 +33,40 @@
         padding: 7px 14px;
         gap: 10px;
     }
+
     .search {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
+        position: relative;
+        .search-results {
+            top: 4rem;
+            gap: 1rem; 
+            width: 17rem;
+            color: white;
+            padding: 0.5rem;
+            max-height: 30vh;
+            position: absolute;
+            background-color: lightslategray;
+            .chatrow {
+                box-shadow:
+                    rgba(0, 0, 0, 0.16) 0px 3px 6px,
+                    rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                border-radius: 0.3rem;
+                gap: 1rem;
+                width: 90%;
+                height: 2rem;
+                padding: 10px;
+                background-color: rgb(97, 96, 96);
+                .pfp {
+                    float: left;
+                    height: 2rem;
+                    width:  2rem;
+                }
+            }
+        }
         input {
             border: none;
             border-radius: 0.5rem;
@@ -47,10 +74,9 @@
             margin: 5px 0;
             padding: 0;
             height: 2.5rem;
-            
         }
-        input::before { 
-            content: 'Search or add chats';
+        input::before {
+            content: "Search or add chats";
             color: white;
         }
         .icon {
@@ -69,7 +95,9 @@
         align-items: center;
         gap: 10px;
         .chatrow {
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+            box-shadow:
+                rgba(0, 0, 0, 0.16) 0px 3px 6px,
+                rgba(0, 0, 0, 0.23) 0px 3px 6px;
             border-radius: 0.8rem;
             gap: 1rem;
             width: 90%;
