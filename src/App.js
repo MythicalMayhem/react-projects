@@ -3,24 +3,20 @@ import { useEffect } from 'react';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from './lib/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { currentUser } from './stores/user';
+import { userStore } from './stores/userStore.js';
 
 import './App.css';
 import Auth from './components/auth/main.jsx';
-import Messenger from './components/messenger/main.jsx'; 
+import Messenger from './components/messenger/main.jsx';
 function App() {
-  const { user, setUserData } = currentUser()
+  const { user, updateUserData } = userStore()
 
-  useEffect(() => {
-    const unSub = onAuthStateChanged(auth, (u) => { setUserData(u?.uid).then(() => console.log('user :>> ', u)); })
-
-    return () => { unSub() }
-  }, [setUserData])
+  useEffect(() => onAuthStateChanged(auth, (u) => { updateUserData(u?.uid).then(() => console.log('user :>> ', u)); }), [updateUserData])
 
 
   const handleLogout = () => {
     signOut(auth)
-      .then(() => { setUserData(null) })
+      .then(() => updateUserData(null))
       .catch(console.log)
   }
 
@@ -29,7 +25,7 @@ function App() {
   let user3 = { username: 'varyen', email: 'varyening@gmail.com', password: '123456' }
   const users = [user1, user2, user3]
   return (
-    <> 
+    <>
       <div className='floats'>
         {
           users.map((u) => (
