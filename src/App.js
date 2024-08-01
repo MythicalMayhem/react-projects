@@ -7,7 +7,7 @@ import { currentUser } from './stores/user';
 
 import './App.css';
 import Auth from './components/auth/main.jsx';
-import Messenger from './components/messenger/main.jsx';
+import Messenger from './components/messenger/main.jsx'; 
 function App() {
   const { user, setUserData } = currentUser()
 
@@ -29,7 +29,7 @@ function App() {
   let user3 = { username: 'varyen', email: 'varyening@gmail.com', password: '123456' }
   const users = [user1, user2, user3]
   return (
-    <>
+    <> 
       <div className='floats'>
         {
           users.map((u) => (
@@ -45,8 +45,6 @@ function App() {
     </>
 
   )
-
-
 }
 
 export default App;
