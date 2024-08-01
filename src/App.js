@@ -20,20 +20,18 @@ function App() {
       .catch(console.log)
   }
 
-  let user1 = { username: 'user1', email: 'user1@gmail.com', password: 'password123' }
-  let user2 = { username: 'user2', email: 'user2@gmail.com', password: 'password123' }
-  let user3 = { username: 'varyen', email: 'varyening@gmail.com', password: '123456' }
-  const users = [user1, user2, user3]
+  let user1 = { username: 'user1', email: 'user1@gmail.com', password: '123456' }
+  let user2 = { username: 'user2', email: 'user2@gmail.com', password: '123456' }
+  const users = [user1, user2]
+
   return (
     <>
       <div className='floats'>
-        {
-          users.map((u) => (
-            <button key={u.email} onClick={async () => { signInWithEmailAndPassword(auth, u.email, u.password) }}>
-              {u.username}
-            </button>
-          ))
-        }
+        {users.map((u) => (
+          <button key={u.email} onClick={async () => { signInWithEmailAndPassword(auth, u.email, u.password) }}>
+            {u.username}
+          </button>
+        ))}
         <button onClick={handleLogout}> Logout</button>
       </div>
       {/* {user === null ? <> <Auth /> </> : <button onClick={handleLogout}> Logout</button>} */}

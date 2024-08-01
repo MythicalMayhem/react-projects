@@ -48,7 +48,7 @@ export const Search = () => {
             <div className="search  default-flex">
                 <input type="text" placeholder="Search for users..." value={search} onChange={(e) => setSearch(e.target.value.toLowerCase())} />
                 <button className="icon" type="submit">+</button>
-                <div className="search-results"> {results.map(searchResult)} </div>
+                <div className="search-results"> {results.filter((u) => user.id !== u.id).map(searchResult)} </div>
             </div>
         </>
     );
