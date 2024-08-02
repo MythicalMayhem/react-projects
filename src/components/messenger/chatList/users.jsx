@@ -1,13 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { userStore } from '../../../stores/userStore.js'
+import { chatStore } from '../../../stores/chatStore.js'
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../../lib/firebase.js";
 export const Users = () => {
-    const { user } = userStore()
-    useEffect(() => { }, [user.chats])
+    const { user }      = userStore()
+    const { openChat }  = chatStore()
+    const [chatRows, setChatRows] = useState(user.chats || [])
 
-    const chat = (name, key) => <div key={key} className="chatRow"><img className="pfp " src="logo192.png" alt="" /><span>{name}</span></div>
+    useEffect(() =>
+        onSnapshot(doc(db, 'users', user?.id), (doc) => {
+            setChatRows(doc.data().chats)
+            console.log('new chat added')
+        }), [user.id])
+
+
+    const chatRow = (chat, key) =>
+        <div key={key} onClick={() => openChat(chat.id)} className="chatRow">
+            <img className="pfp" src="logo192.png" alt="" />
+            <span>{chat.name}</span>
+        </div>
+
     return (
         <div className="rows">
-            {user.chats.map((name, index) => chat(name, index))}
+            {console.log('ChatRows: ', chatRows) || ''}
+            {chatRows.map((chat, key) => { ; return chatRow(chat, key) })}
         </div>
     );
 }

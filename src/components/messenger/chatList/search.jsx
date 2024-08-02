@@ -9,7 +9,7 @@ export const Search = () => {
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
     const [selected, setSelected] = useState(null)
-    const { user, addChat } = userStore()
+    const { user, addChat, updateUserData } = userStore()
 
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export const Search = () => {
             <span>{res.username}</span>
         </div>
     const handleAdd = (recipient) => {
-        addChat(user, recipient)
+        addChat(user, recipient) 
     }
     return (
         <>

@@ -1,15 +1,17 @@
+import { useState } from 'react'
+import { userStore } from '../../../stores/userStore'
+import { chatStore } from '../../../stores/chatStore'
+
 import './chat.css'
 export const Texts = () => {
-    let userid = 1
+    const { user } = userStore()
+    const { messages } = chatStore()
     const receipiantid = 0
     // eslint-disable-next-line no-unused-vars
-    const message = (content, key) => {
-        userid = (userid+1) % 2;
-        return <div key={key} className={"message " + (userid === receipiantid ? 'sent' : 'received')}> {content}</div >
+    const message = (content, key,sender) => {
+        return <div key={key} className={"message " + (user.id === sender.id ? 'sent' : 'received')}> {content}</div >
     }
-    const messages = [
  
-    ]
 
     return (
         <div className="texts">

@@ -11,7 +11,7 @@ import Messenger from './components/messenger/main.jsx';
 function App() {
   const { user, updateUserData } = userStore()
 
-  useEffect(() => onAuthStateChanged(auth, (u) => { updateUserData(u?.uid).then(() => console.log('user :>> ', u)); }), [updateUserData])
+  useEffect(() => onAuthStateChanged(auth, (u) => { updateUserData(u?.uid) }), [updateUserData])
 
 
   const handleLogout = () => {
@@ -33,8 +33,7 @@ function App() {
           </button>
         ))}
         <button onClick={handleLogout}> Logout</button>
-      </div>
-      {/* {user === null ? <> <Auth /> </> : <button onClick={handleLogout}> Logout</button>} */}
+      </div> 
       {user === null ? <> <Auth /> </> : <Messenger />}
     </>
 
