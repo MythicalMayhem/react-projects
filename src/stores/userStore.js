@@ -10,6 +10,7 @@ export const userStore = create((set) => ({
         if (!userId) return set({ user: null })
         const userRef = doc(db, 'users', userId)
         const userDoc = await getDoc(userRef)
+        
         if (userDoc.exists()) { set({ user: userDoc.data() }) }
         else { set({ user: null, chats: [] }) }
         console.log('user', userDoc.data())
@@ -18,6 +19,7 @@ export const userStore = create((set) => ({
         const chatId = getChatId(currentUser, recipient)
         const q = query(collection(db, 'chats'), where('chatId', '==', chatId))
         await getDocs(q).then(async (snapshots) => {
+            // todo : test this 
             if (snapshots.empty) {
                 const userChatsRef = doc(db, 'users', currentUser.id)
                 const recipientChatsRef = doc(db, 'users', recipient.id)

@@ -4,7 +4,7 @@ import { Users } from "./users";
 import "./chatList.css";
 function ChatList() {
     return (
-        <div className="chatList  " >
+        <div className="chatList" >
             <UserInfo />
             <Search />
             <Users />
