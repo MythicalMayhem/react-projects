@@ -8,10 +8,10 @@ export const Users = () => {
     const { setChat } = chatStore()
     const [chatRows, setChatRows] = useState(user.chats || [])
 
-    // useEffect(() =>
-    //     onSnapshot(doc(db, 'users', user?.id), (doc) => {
-    //         setChatRows(doc.data().chats)
-    //     }),[user.id])
+    useEffect(() =>
+        onSnapshot(doc(db, 'users', user?.id), (doc) => {
+            setChatRows(doc.data().chats)
+        }),[user.id])
 
 
     const chatRow = (chat, key) =>

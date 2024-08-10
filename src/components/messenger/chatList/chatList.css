@@ -1,7 +1,7 @@
 .chatList {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     color: white;
-    background-color: #454545;
+    background-color: #4d0f9e33;
+    box-shadow: 0px 0px 15px 10px #4d0f9e33;
     width: 20vw;
     overflow: scroll;
     min-width: 320px;
@@ -21,20 +21,18 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        border-radius: 10% 10% 10% 10%;
+        background-color: transparent;
+        width: 100%;
         .pfp {
             height: 5rem;
         }
     }
-    .userInfo,
     .search {
         width: 90%;
-        border-radius: 1em;
-        background-color: #282828;
+        border-radius: 0.2em;
         padding: 7px 14px;
         gap: 10px;
-    }
-
-    .search {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -43,7 +41,7 @@
         position: relative;
         .search-results {
             top: 4rem;
-            gap: 1rem; 
+            gap: 1rem;
             width: 17rem;
             color: white;
             padding: 0.5rem;
@@ -63,7 +61,7 @@
                 .pfp {
                     float: left;
                     height: 2rem;
-                    width:  2rem;
+                    width: 2rem;
                 }
             }
         }
@@ -95,14 +93,16 @@
         align-items: center;
         gap: 10px;
         .chatRow {
+            background-color: #4a1785;
             box-shadow:
-                rgba(0, 0, 0, 0.16) 0px 3px 6px,
-                rgba(0, 0, 0, 0.23) 0px 3px 6px;
-            border-radius: 0.8rem;
+                rgba(0, 0, 0, 0.5) 0px 2px 20px 0px,
+                rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+            border-radius: 0 0 30% 0%;
             gap: 1rem;
             width: 90%;
             padding: 10px;
-            background-color: rgb(97, 96, 96);
+            color: white;
             .pfp {
                 float: left;
                 height: 4rem;

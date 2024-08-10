@@ -21,14 +21,13 @@ function Signup() {
             })//.catch(console.log)
     }
     return (
-        <div className="signup form">
-            <form action="" onSubmit={handleSignup}>
-                <label htmlFor="username">username</label> <input name="username" type="text" />
-                <label htmlFor="email">email      </label> <input name="email" type="email" />
-                <label htmlFor="password">password</label> <input name="password" type="password" />
-                <input type="submit" />
-            </form>
-        </div>
+        <form action="" onSubmit={handleSignup}>
+            <h1>Sign Up</h1>
+            <input type="text" name="username" placeholder="username" required />
+            <input type="email" name="email" placeholder="email" required />
+            <input type="password" name="password" placeholder="password" required />
+            <input type="submit" value="login" />
+        </form>
     );
 }
 

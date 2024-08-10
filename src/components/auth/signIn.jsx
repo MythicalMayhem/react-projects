@@ -8,14 +8,13 @@ function Signin() {
         await signInWithEmailAndPassword(auth, email, password)/*.then(console.log)*/.catch(console.log)
     }
 
-    return (
-        <div className="signin form">
-            <form action="" onSubmit={handleSignin}>
-                <label htmlFor="email">email </label> <input name="email" type="email" />
-                <label htmlFor="password">password</label> <input name="password" type="password" />
-                <input type="submit" />
-            </form>
-        </div>
+    return ( 
+        <form action="#" onSubmit={handleSignin}>
+            <h1>Sign In</h1>
+            <input type="text" name="email" placeholder="email" required />
+            <input type="password" name="password" placeholder="password" required />
+            <input type="submit" value="login"   />
+        </form> 
     );
 }
 

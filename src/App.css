@@ -1,16 +1,28 @@
 #root,
 body,
-html { 
+html {
   margin: 0;
   height: 100%;
   width: 100%;
-} 
+}
+body {
+  background-image: url('../public/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; 
+
+}
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .floats {
   button {
     height: 1cm;
   }
   top: 1rem;
-  left : 1rem;
+  left: 1rem;
   position: absolute;
   display: flex;
   justify-content: center;
