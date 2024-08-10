@@ -22,14 +22,14 @@ export const userStore = create((set) => ({
             if (snapshots.empty) {
                 const userChatsRef = doc(db, 'users', currentUser.id)
                 const recipientChatsRef = doc(db, 'users', recipient.id)
-                if (recipientChatsRef.exists() && userChatsRef.exists() && (recipient.id !== currentUser.id)) {
+                if (recipientChatsRef.exists && userChatsRef.exists && (recipient.id !== currentUser.id)) {
                     await setDoc(doc(db, 'chats', chatId), { messages: [], users: [currentUser, recipient] })
                     await updateDoc(userChatsRef, { chats: arrayUnion({ id: chatId, name: recipient.username }) })
                     await updateDoc(recipientChatsRef, { chats: arrayUnion({ id: chatId, name: currentUser.username }) })
                     console.log('Chat created')
-                } else { console.log('User does not exist') }
+                } else { console.log('Chat already exists') }
 
-            } else { console.log('Chat already exists') }
+            } else { console.log('User does not exist') }
         })
     }
 }))

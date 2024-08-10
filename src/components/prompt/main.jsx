@@ -4,6 +4,7 @@ function Prompt({ title, desc, options }) {
         <div className="prompt-wrapper"   >
             <h1>{title || 'Alert'}</h1>
             <h2>{desc || ''}</h2>
+            <hr />
             <div className="buttons"> {options.map((option, i) => <button key={i} onClick={() => { option.handle(); }}>{option.label}</button>)} </div>
         </div>
 

@@ -6,20 +6,18 @@ import { userStore } from "../../../stores/userStore.js";
 
 export const Search = () => {
 
-    const [selected, setSelected] = useState(null)
-    const { user, addChat, updateUserData } = userStore()
+    const { user, addChat } = userStore()
 
     const [search, setSearch] = useState('')
+    const [addMode, setAddMode] = useState(false)
     const [results, setResults] = useState([])
-
+    const [selected, setSelected] = useState(null)
 
     useEffect(() => {
         if (!search) { setResults([]); return }
-
         const usersRef = collection(db, "users")
         const q = query(usersRef, and(where("username", ">=", search), where("username", "<=", search + "\uF8FF")))
         let cancel = false
-
         getDocs(q).then((snapshot) => {
             if (cancel) return;
             const res = []
@@ -46,10 +44,17 @@ export const Search = () => {
                     desc={'Are you sure you want to add ' + selected.username + ' ?'}
                     options={[{ label: 'Confirm', handle: () => { handleAdd(selected); setSelected(null); } }, { label: 'Cancel', handle: () => { setSelected(null) } }]}
                 />}
-            <div className="search  default-flex">
-                <input type="text" placeholder="Search for users..." value={search} onChange={(e) => setSearch(e.target.value.toLowerCase())} />
-                <button className="icon" type="submit">+</button>
-                <div className="search-results"> {results.filter((u) => user.id !== u.id).map(searchResult)} </div>
+            <div className="search">
+                <input type="text" placeholder="Search for users..." />
+                <button className="icon" onClick={() => setAddMode(!addMode)}>+</button>
+                <div className="searchresWrap" style={{ display: addMode ? 'flex' : 'none' }}>
+                    <div className="search-results" >
+                        <input value={search} onChange={(e) => setSearch(e.target.value.toLowerCase())} type="text" />
+                        {results.length > 0 ? results.filter((u) => user.id !== u.id).map(searchResult) : 'No results'}
+                        <hr />
+                        <button onClick={() => setAddMode(!addMode)}>Close</button>
+                    </div>
+                </div>
             </div>
         </>
     );

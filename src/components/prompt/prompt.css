@@ -1,9 +1,29 @@
 .prompt-wrapper {
+    z-index: 10000;
+
+    width: 100%;
+    max-width: 30vw;
+    min-width: 300px;
     position: absolute;
-    top: 2rem;
-    transform-origin: 50% 50% 50% 50%; 
-    left: 50%;
-    background-color: white;
-    color: black;
+    transform-origin: 50% 0%;
+    left: 35%;
+    background-color: rgb(61, 5, 150);
+    color: white;
     padding: 1rem;
+    text-align: center;
+    hr {
+        margin-top: 1cm;
+        width: 100%;
+    }
+    button {
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: larger;
+        &:hover {
+            background-color: rgba(105, 50, 192, 0.8);
+        }
+    }
 }

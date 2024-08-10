@@ -22,12 +22,14 @@ export const chatStore = create((set) => ({
             files: fileSrc || [],
         }
         await updateDoc(chatRef, { messages: arrayUnion(newMessage) })
-        .then(()=>{console.log('message added!');set((state) => {
-
-            console.log('message sent',{ chat: { ...state.chat, messages: [...state.chat.messages,newMessage] }});
-            return { chat: { ...state.chat, messages: [...state.chat.messages,newMessage] } }
-        })})
-        .catch(error => console.error('Error adding message: ', error));
+            .then(() => {
+                console.log('message added!');
+                set((state) => {
+                    console.log('message sent', { chat: { ...state.chat, messages: [...state.chat.messages, newMessage] } });
+                    return { chat: { ...state.chat, messages: [...state.chat.messages, newMessage] } }
+                })
+            })
+            .catch(error => console.error('Error adding message: ', error));
     },
     deleteMessage: async (chatId, messageId) => {
         const chatRef = doc(db, 'chats', chatId)

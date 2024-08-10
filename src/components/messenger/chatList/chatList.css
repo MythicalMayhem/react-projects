@@ -8,7 +8,7 @@
     padding: 7px;
     border-radius: 0.8em;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     flex-direction: column;
     justify-content: flex-start;
     flex-wrap: nowrap;
@@ -21,9 +21,11 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        border-radius: 10% 10% 10% 10%;
         background-color: transparent;
         width: 100%;
+        border-bottom: 1px groove purple;
+        padding-bottom: 1rem;
+
         .pfp {
             height: 5rem;
         }
@@ -31,37 +33,73 @@
     .search {
         width: 90%;
         border-radius: 0.2em;
-        padding: 7px 14px;
+        padding: 0.5rem 0.2rem;
         gap: 10px;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
-        position: relative;
+        .searchresWrap {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            transform-origin: center;
+            top: 0%;
+            left: 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .search-results {
-            top: 4rem;
-            gap: 1rem;
+            gap: 0.5rem;
             width: 17rem;
             color: white;
-            padding: 0.5rem;
-            max-height: 30vh;
-            position: absolute;
-            background-color: lightslategray;
+            padding: 1rem 0.5rem;
+            max-height: 50vh;
+            background-color: #9b72cf;
+            box-shadow: 0px 0px 10px 2px #9b72cf;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            input{
+                width: 100%;
+                padding: 0 1rem   ;
+            }
             .chatRow {
+                cursor: pointer;
+                background-color: #49178a;
                 box-shadow:
-                    rgba(0, 0, 0, 0.16) 0px 3px 6px,
-                    rgba(0, 0, 0, 0.23) 0px 3px 6px;
-                border-radius: 0.3rem;
-                gap: 1rem;
+                    rgba(0, 0, 0, 0.5) 0px 2px 20px 0px,
+                    rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+                border-radius: 0.2rex;
+                gap: 1.1rem;
                 width: 90%;
-                height: 2rem;
                 padding: 10px;
-                background-color: rgb(97, 96, 96);
+                color: white;
                 .pfp {
                     float: left;
                     height: 2rem;
                     width: 2rem;
+                }
+            }
+            hr {
+                margin-top: 1cm;
+                width: 100%;
+            }
+            button {
+                padding: 0.5rem 1rem;
+                background-color: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                font-size: larger;
+                &:hover {
+                    background-color: rgba(105, 50, 192, 0.8);
                 }
             }
         }
@@ -91,8 +129,9 @@
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 10px;
+        gap: 0.25rem;
         .chatRow {
+            cursor: pointer;
             background-color: #4a1785;
             box-shadow:
                 rgba(0, 0, 0, 0.5) 0px 2px 20px 0px,
