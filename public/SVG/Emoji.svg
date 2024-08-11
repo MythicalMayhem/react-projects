@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156.11 147.46">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #231f20;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #662d91;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke: #ec008c;
+        stroke-linecap: round;
+        stroke-width: 8px;
+      }
+
+      .cls-3 {
+        fill: #ec008c;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="AddFriend">
+    <ellipse class="cls-1" cx="78.06" cy="83.63" rx="77.56" ry="63.33"/>
+    <path class="cls-1" d="M11.2,50.41L6.3,7.91c-.43-3.77,3.54-6.48,6.89-4.7l39.49,20.98"/>
+    <path class="cls-1" d="M98.79,22.59L137.99,1.04c3.2-1.76,7,1,6.32,4.59l-7.05,37.08"/>
+    <circle class="cls-3" cx="52.69" cy="61.22" r="15.53"/>
+    <circle class="cls-3" cx="100.57" cy="58.24" r="15.53" transform="translate(15.68 137.62) rotate(-73.15)"/>
+    <path class="cls-2" d="M47.39,102.69c-2.36,7.79,1.18,18.64,5.3,20.89,14,7.67,22.38-9.38,23.03-9.3,1.07.14,8.23,18.3,24.12,8.74,2.45-1.47,7.62-7.07,5.66-19.7"/>
+  </g>
+</svg>

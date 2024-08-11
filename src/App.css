@@ -6,13 +6,12 @@ body,
 html {
   margin: 0;
   height: 100%;
-  width: 100%;
 }
-body {
-  background-image: url('../public/bg.jpg');
+html {
+  background-image: url("../public/bg.jpg");
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; 
-
+  background-size: cover;
 }
 #root {
   display: flex;

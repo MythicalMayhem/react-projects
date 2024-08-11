@@ -30,7 +30,7 @@ export const Search = () => {
 
     const searchResult = (res, i) =>
         <div className="chatRow" key={i} onClick={() => { setSelected(res); }}>
-            <img className="pfp" src={res.avatar || "logo192.png"} alt="" />
+            <img className="pfp" src={res.avatar || "SVG/pfp.svg"} alt="" />
             <span>{res.username}</span>
         </div>
     const handleAdd = (recipient) => {

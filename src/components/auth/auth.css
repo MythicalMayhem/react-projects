@@ -10,14 +10,15 @@
 /* f4effa-2f184b-532b88-9b72cf-c8b1e4 */
 
 .auth {
-    width: 100%;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-content: center;
-    gap: 3rem;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 3rem;
+    height: 100%;
+    padding: 3rem 0;
+
     form {
         width: 33%;
         min-width: 300px;
@@ -25,11 +26,15 @@
         backdrop-filter: blur(15px);
         border-radius: 0.3rem;
         box-shadow: 0 0px 20px rgba(255, 255, 255, 0.24);
-        padding: 4rem 2rem;
+        padding: 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        .pfp {
+            height: 100px;
+            width: 100px;
+        }
         h1 {
             color: #f4effa;
             font-size: 2rem;
@@ -44,7 +49,7 @@
             border-bottom: 0.3rem solid white;
             border-radius: 5px;
             color: #f4effa;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             padding: 0.8rem 1rem;
             outline: none;
             width: 100%;
@@ -54,16 +59,15 @@
         }
         input[type="submit"] {
             border: none;
-            background-color: #ffffffcc; 
+            background-color: #ffffffcc;
             cursor: pointer;
             font-weight: 500;
             letter-spacing: 1px;
             width: fit-content;
-            justify-self: flex-end; 
+            justify-self: flex-end;
             color: #2f184bd2;
             &:hover {
                 background: #c8b1e4;
- 
             }
         }
     }

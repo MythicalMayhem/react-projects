@@ -16,9 +16,9 @@ export const Input = ({ send }) => {
     }
     return (
         <form action="" onSubmit={handleSend} className="input" >
+            <img className='icon' src= "SVG/uploadImage.svg" alt="img" />
             <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Type a message..." />
-            <img className='icon' src="logo192.png" alt="file" />
-            <img className='icon' src="logo192.png" alt="emoji" />
+            <img className='icon' src="SVG/sendMessage.svg" alt="emoji" />
         </form>
     );
 }

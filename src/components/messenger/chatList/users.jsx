@@ -11,18 +11,18 @@ export const Users = () => {
     useEffect(() =>
         onSnapshot(doc(db, 'users', user?.id), (doc) => {
             setChatRows(doc.data().chats)
-        }),[user.id])
+        }), [user.id])
 
 
     const chatRow = (chat, key) =>
         <div key={key} onClick={() => setChat(chat.id)} className="chatRow">
-            <img className="pfp" src="logo192.png" alt="" />
+            <img className="pfp" src={chat.avatar || "SVG/pfp.svg"} alt="" />
             <span>{chat.name}</span>
         </div>
 
     return (
         <div className="rows">
-            {console.log('chatRows', chatRows)  }
+            {console.log('chatRows', chatRows)}
             {chatRows.map((chat, key) => { ; return chatRow(chat, key) })}
         </div>
     );

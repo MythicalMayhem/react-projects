@@ -7,7 +7,7 @@ export const RecipientHeader = () => {
     const { user } = userStore()
     return (
         <div className="recipient">
-            <img className='pfp' src="logo192.png" alt="logo" />
+            <img className='pfp' src={chat?.avatar || "SVG/pfp.svg"} alt="logo" />
             <h2>{chat?.users.filter((u) => { return u.id !== user.id })[0].username}</h2>
         </div>
     );
