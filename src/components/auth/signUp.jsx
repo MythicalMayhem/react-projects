@@ -1,8 +1,8 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { db } from "../../lib/firebase"
 import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
-import upload from "../../lib/upload";
+import wrap from "../../lib/upload";
 
 function Signup() {
     const auth = getAuth()
@@ -10,21 +10,18 @@ function Signup() {
     const handleSignup = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.target)
-        const { username, email, password ,avatar} = Object.fromEntries(formData)
+        const { username, email, password, avatar } = Object.fromEntries(formData)
         await createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
-                console.log('ther',avatar );
-                
                 const user = {
                     username,
                     id: userCredential.user.uid,
                     chats: [],
-                    avatar: avatar.size ? await upload(avatar) : null ,
+                    avatar: avatar.size ? await wrap.upload(avatar) : null,
                 }
                 const userRef = doc(db, "users", userCredential.user.uid)
                 setDoc(userRef, user)
-
-            }).catch(console.log)
+            }).then(() => signInWithEmailAndPassword(auth, email, password)).catch(console.log)
     }
 
     return (

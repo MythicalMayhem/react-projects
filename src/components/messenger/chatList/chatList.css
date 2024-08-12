@@ -19,15 +19,21 @@
     }
     .userInfo {
         display: flex;
-        justify-content: flex-start;
+        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
+        justify-content: center;
+        gap: 1rem;
         background-color: transparent;
         width: 100%;
         border-bottom: 1px groove purple;
         padding-bottom: 1rem;
-
+ 
         .pfp {
+            justify-self: flex-start;
+            align-self: flex-start;
             height: 5rem;
+            width:  5rem;
         }
     }
     .search {
@@ -40,6 +46,13 @@
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
+        .icon {
+            height: 30px;
+            background-color: #9a72cfa8;
+            box-shadow: 0px 0px 10px 5px #9a72cfce;
+            border: none;
+            cursor: pointer;
+        }
         .searchresWrap {
             position: absolute;
             height: 100%;
@@ -60,18 +73,18 @@
             max-height: 50vh;
             background-color: #9b72cf;
             box-shadow: 0px 0px 10px 2px #9b72cf;
-
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            input{
+            input {
                 width: 100%;
-                padding: 0 1rem   ;
+                padding: 0 1rem;
             }
             .chatRow {
                 cursor: pointer;
-                background-color: #49178a;
+                background-color: #916ee2b9;
+                backdrop-filter: blur(5px);
                 box-shadow:
                     rgba(0, 0, 0, 0.5) 0px 2px 20px 0px,
                     rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
@@ -90,6 +103,7 @@
             hr {
                 margin-top: 1cm;
                 width: 100%;
+                
             }
             button {
                 padding: 0.5rem 1rem;
@@ -132,20 +146,21 @@
         gap: 0.25rem;
         .chatRow {
             cursor: pointer;
-            background-color: #4a1785;
+            background-color: #916ee2b9;
+            backdrop-filter: blur(5px);
             box-shadow:
                 rgba(0, 0, 0, 0.5) 0px 2px 20px 0px,
                 rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 
-            border-radius: 0 0 30% 0%;
+            border-radius: 10% 10% 25% 10%;
             gap: 1rem;
             width: 90%;
             padding: 10px;
             color: white;
             .pfp {
                 float: left;
-                height: 4rem;
-                width: 4rem;
+                height: 3rem;
+                width: 3rem;
             }
         }
     }

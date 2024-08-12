@@ -10,10 +10,9 @@ export const userStore = create((set) => ({
         if (!userId) return set({ user: null })
         const userRef = doc(db, 'users', userId)
         const userDoc = await getDoc(userRef)
-
+ 
         if (userDoc.exists()) { set({ user: userDoc.data() }) }
         else { set({ user: null, chats: [] }) }
-        console.log('user', userDoc.data())
     },
     addChat: async (currentUser, recipient) => {
         const chatId = getChatId(currentUser, recipient)
@@ -21,15 +20,15 @@ export const userStore = create((set) => ({
         await getDocs(q).then(async (snapshots) => {
             if (snapshots.empty) {
                 const userChatsRef = doc(db, 'users', currentUser.id)
-                const recipientChatsRef = doc(db, 'users', recipient.id) 
-                
-                
-                    await setDoc(doc(db, 'chats', chatId), { messages: [], users: [currentUser, recipient] })
-                    await updateDoc(userChatsRef, { chats: arrayUnion({ id: chatId, name: recipient.username,avatar :recipient.avatar }) })
-                    await updateDoc(recipientChatsRef, { chats: arrayUnion({ id: chatId, name: currentUser.username,avatar :currentUser.avatar }) })
+                const recipientChatsRef = doc(db, 'users', recipient.id)
 
+                await setDoc(doc(db, 'chats', chatId), { id: chatId, messages: [], users: [currentUser, recipient],at:new Date(),last:''})
+                await updateDoc(userChatsRef, { chats: arrayUnion({ id: chatId, name: recipient.username, avatar: recipient.avatar, }) })
+                await updateDoc(recipientChatsRef, { chats: arrayUnion({ id: chatId, name: currentUser.username, avatar: currentUser.avatar, }) })
 
             } else { console.log('User does not exist') }
+
         })
+        return chatId
     }
 }))

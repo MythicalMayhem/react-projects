@@ -20,7 +20,9 @@
     padding: 3rem 0;
 
     form {
-        width: 33%;
+        text-align: center;
+
+        width: 40%;
         min-width: 300px;
         background-color: #2f184bd2;
         backdrop-filter: blur(15px);
@@ -32,8 +34,8 @@
         align-items: center;
         flex-direction: column;
         .pfp {
-            height: 100px;
-            width: 100px;
+            height: 5rem;
+            width:  5rem;
         }
         h1 {
             color: #f4effa;

@@ -14,7 +14,8 @@
     .recipient {
         width: 100%;
         border-radius: 0 0 25% 25%;
-        background-color: #49178a;
+        background-color: #916ee2b9;
+        backdrop-filter: blur(5px);
         box-shadow:
             rgba(0, 0, 0, 0.5) 0px 2px 20px 0px,
             rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
@@ -52,6 +53,16 @@
             }
             &.received {
                 border-bottom-left-radius: 0;
+                background-color: #6311ce;
+            }
+             p {
+                margin:  0.3rem 1.25rem;
+                font-size:  x-large;
+            }
+            .imgmsg {
+                max-width:250px ;
+                width: 100%;
+
             }
         }
     }
@@ -71,6 +82,32 @@
         padding: 1rem;
         background-color: #9a72cf73;
         box-shadow: 0px 0px 10px 5px #9a72cf73;
+        position: relative;
+        .file {
+            background-color: #9a72cf73;
+            box-shadow: 0px 0px 10px 5px #9a72cf73;
+
+            position: absolute;
+            left: 0;
+            bottom: 4rem;
+            cursor: pointer;
+            height: 25vh;
+            width: 25vh;
+            background-size: cover;
+            .trashicon {
+                position: absolute;
+                height: 20%;
+                border-radius: 1rem;
+            }
+        }
+        .file-input__input {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
         input,
         input:active {
             border: none;
@@ -86,6 +123,7 @@
             height: 30px;
             background-color: #9a72cfa8;
             box-shadow: 0px 0px 10px 5px #9a72cfce;
+            cursor: pointer;
         }
     }
 }

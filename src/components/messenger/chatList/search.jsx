@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
-import { collection, query, where, and, getDocs } from "firebase/firestore";
+import { collection, query, where, and, getDocs, onSnapshot, doc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import Prompt from "../../prompt/main.jsx";
 import { userStore } from "../../../stores/userStore.js";
+import { Users } from "./users";
+import { chatStore } from "../../../stores/chatStore.js";
 
 export const Search = () => {
 
     const { user, addChat } = userStore()
+    const { chat, setChat } = chatStore()
 
-    const [search, setSearch] = useState('')
+    const [selected, setSelected] = useState(null)
     const [addMode, setAddMode] = useState(false)
     const [results, setResults] = useState([])
-    const [selected, setSelected] = useState(null)
+    const [search, setSearch] = useState('')
+    const [filter, setFilter] = useState('')
 
     useEffect(() => {
         if (!search) { setResults([]); return }
@@ -27,15 +31,23 @@ export const Search = () => {
         return () => cancel = true;
     }, [search])
 
-
     const searchResult = (res, i) =>
         <div className="chatRow" key={i} onClick={() => { setSelected(res); }}>
             <img className="pfp" src={res.avatar || "SVG/pfp.svg"} alt="" />
             <span>{res.username}</span>
         </div>
+    
     const handleAdd = (recipient) => {
         addChat(user, recipient)
+            .then((id) => {
+                console.log(id);
+            
+                onSnapshot(doc(db, 'chats', id), (snap) => {
+                    if (snap.data().id === chat?.id) { setChat(snap.data().id); }
+                })
+            })
     }
+
     return (
         <>
             {selected &&
@@ -45,8 +57,8 @@ export const Search = () => {
                     options={[{ label: 'Confirm', handle: () => { handleAdd(selected); setSelected(null); } }, { label: 'Cancel', handle: () => { setSelected(null) } }]}
                 />}
             <div className="search">
-                <input type="text" placeholder="Search for users..." />
-                <button className="icon" onClick={() => setAddMode(!addMode)}>+</button>
+                <input type="text" placeholder="Search for users..." value={filter} onChange={(e) => { setFilter(e.target.value) }} />
+                <button className="icon" onClick={() => setAddMode(!addMode)}><img src="./SVG/addUser.svg" alt='+' /></button>
                 <div className="searchresWrap" style={{ display: addMode ? 'flex' : 'none' }}>
                     <div className="search-results" >
                         <input value={search} onChange={(e) => setSearch(e.target.value.toLowerCase())} type="text" />
@@ -56,6 +68,7 @@ export const Search = () => {
                     </div>
                 </div>
             </div>
+            <Users filter={filter} />
         </>
     );
 }
