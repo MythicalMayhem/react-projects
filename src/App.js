@@ -28,12 +28,12 @@ function App() {
   return (
     <>
       <div className='floats'>
-        {users.map((u) => (
+        {/* {users.map((u) => (
           <button key={u.email} onClick={async () => { signInWithEmailAndPassword(auth, u.email, u.password) }}>
             {u.username}
           </button>
         ))}
-        <button onClick={handleLogout}> Logout</button>
+        <button onClick={handleLogout}> Logout</button> */}
       </div> 
       {user === null ? <> <Auth /> </> : <Messenger />}
     </>
