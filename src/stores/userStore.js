@@ -6,6 +6,7 @@ const getChatId = (user1, user2) => { return [user1.id, user2.id].sort().join('-
 
 export const userStore = create((set) => ({
     user: null,
+    loading: true,
     updateUserData: async (userId) => {
         if (!userId) return set({ user: null })
         const userRef = doc(db, 'users', userId)
@@ -30,5 +31,9 @@ export const userStore = create((set) => ({
 
         })
         return chatId
+    },
+    setLoading : (state)=>{
+        set({ loading: state })
     }
+    
 }))

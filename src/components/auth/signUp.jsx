@@ -3,25 +3,35 @@ import { db } from "../../lib/firebase"
 import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import wrap from "../../lib/upload";
+import { userStore } from "../../stores/userStore";
 
 function Signup() {
     const auth = getAuth()
     const [pfp, setPfp] = useState('./SVG/pfp.svg')
+    const { setLoading } = userStore()
+
     const handleSignup = async (e) => {
-        e.preventDefault()
-        const formData = new FormData(e.target)
-        const { username, email, password, avatar } = Object.fromEntries(formData)
-        await createUserWithEmailAndPassword(auth, email, password)
-            .then(async (userCredential) => {
-                const user = {
-                    username,
-                    id: userCredential.user.uid,
-                    chats: [],
-                    avatar: avatar.size ? await wrap.upload(avatar) : null,
-                }
-                const userRef = doc(db, "users", userCredential.user.uid)
-                setDoc(userRef, user)
-            }).then(() => signInWithEmailAndPassword(auth, email, password)).catch(console.log)
+        setLoading(true)
+        try {
+            e.preventDefault()
+            const formData = new FormData(e.target)
+            const { username, email, password, avatar } = Object.fromEntries(formData)
+            await createUserWithEmailAndPassword(auth, email, password)
+                .then(async (userCredential) => {
+                    const user = {
+                        username,
+                        id: userCredential.user.uid,
+                        chats: [],
+                        avatar: avatar.size ? await wrap.upload(avatar) : null,
+                    }
+                    const userRef = doc(db, "users", userCredential.user.uid)
+                    setDoc(userRef, user)
+                }).then(() => signInWithEmailAndPassword(auth, email, password)).catch(console.log)
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (

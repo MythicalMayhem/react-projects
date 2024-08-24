@@ -9,33 +9,40 @@ import './App.css';
 import Auth from './components/auth/main.jsx';
 import Messenger from './components/messenger/main.jsx';
 function App() {
-  const { user, updateUserData } = userStore()
+  const { user, loading, setLoading, updateUserData } = userStore()
 
-  useEffect(() => onAuthStateChanged(auth, (u) => { updateUserData(u?.uid) }), [updateUserData])
+  useEffect(() => onAuthStateChanged(auth, (u) => { updateUserData(u?.uid).then(() => { setLoading(false) }) }), [updateUserData, setLoading])
 
 
   const handleLogout = () => {
     signOut(auth)
-      .then(() => updateUserData(null))
-      .catch(console.log)
+      .then(() => {
+        updateUserData(null)
+          .then(() => { setLoading(false) })
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false)
+      })
   }
 
   let user1 = { username: 'user1', email: 'user1@gmail.com', password: '123456' }
   let user2 = { username: 'user2', email: 'user2@gmail.com', password: '123456' }
-  let user3 = { username: 'user3', email: 'user3@gmail.com', password: '123456' }
-  const users = [user1, user2,user3]
+  const users = [user1, user2]
 
   return (
     <>
       <div className='floats'>
-        {/* {users.map((u) => (
-          <button key={u.email} onClick={async () => { signInWithEmailAndPassword(auth, u.email, u.password) }}>
+        {users.map((u) => (
+          <button key={u.email} onClick={async () => { setLoading(true); signInWithEmailAndPassword(auth, u.email, u.password).then(() => { setLoading(false) }) }}>
             {u.username}
           </button>
         ))}
-        <button onClick={handleLogout}> Logout</button> */}
-      </div> 
-      {user === null ? <> <Auth /> </> : <Messenger />}
+
+        <button onClick={handleLogout}> Logout</button>
+      </div>
+      {loading ? 'Loading...' : ((user) ? < Messenger /> : <Auth />)}
+
     </>
 
   )

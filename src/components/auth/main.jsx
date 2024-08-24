@@ -1,10 +1,14 @@
 import Signin from "./signIn";
 import Signup from "./signUp";
 import './auth.css'
+import { userStore } from "../../stores/userStore";
 
 function Auth() {
+    const { loading, user } = userStore()
     return (
+
         <div className="auth">
+            {(loading || user) && <>'Loading...'</>}
             <Signin />
             <Signup />
         </div>
