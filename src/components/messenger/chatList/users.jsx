@@ -9,25 +9,35 @@ export const Users = ({ filter }) => {
     const { chat, setChat } = chatStore()
     const [chatRows, setChatRows] = useState(user.chats || [])
 
-    useEffect(() =>
-        onSnapshot(doc(db, 'users', user?.id), (doc) => {
-            setChatRows(doc.data().chats)
-        }), [user.id])
 
     useEffect(() => {
-        for (let i = 0; i < user.chats.length; i++) {
-            const chatRef = doc(db, 'chats', user.chats[i].id);
-            onSnapshot(chatRef, (snap) => {
-                if (chat?.id && (snap.data()?.id === chat?.id)) {
-                    setChat(chat?.id, user.chats);
-                }
-                const q = user?.chats.find((c) => { return c.id === snap.data().id; })
-                q.last = snap.data().last;
-                console.log(q);
-                
-            })
+        const unsubs = []
+        const userRef = doc(db, 'users', user?.id)
+
+        onSnapshot(userRef, (snap) => {
+            setChatRows(snap.data().chats)
+
+            for (let i = 0; i < user?.chats.length; i++) {
+                const chatRef = doc(db, 'chats', user.chats[i].id);
+                const unsub = onSnapshot(chatRef, (snap) => {
+                     
+                    if (chat?.id === snap.data().id) {
+                        setChat(snap.data())
+                    }
+                    const q = user?.chats.find((c) => { return c.id === snap.data().id; })
+                    q.last = snap.data().last;
+                })
+                unsubs.push(unsub)
+            }
+        })
+        return () => {
+            for (let i = 0; i < unsubs.length; i++) {
+                unsubs[i]()
+            }
         }
-    }, [chat?.id, user?.chats, setChat,])
+    }, [user?.id, user?.chats,chat?.id, setChat])
+
+
 
     const chatRow = (chat, key) =>
         <div key={key} onClick={() => setChat(chat.id)} className="chatRow">
@@ -37,7 +47,6 @@ export const Users = ({ filter }) => {
             <span>{chat?.at}</span>
         </div>
 
-    console.log(chatRows, user.chats, chat, setChat);
 
     return (
         <div className="rows">

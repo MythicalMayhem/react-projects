@@ -9,7 +9,7 @@ import { chatStore } from "../../../stores/chatStore.js";
 export const Search = () => {
 
     const { user, addChat } = userStore()
-    const { chat, setChat } = chatStore()
+    const { chat, setChat, chatInStore } = chatStore()
 
     const [selected, setSelected] = useState(null)
     const [addMode, setAddMode] = useState(false)
@@ -30,22 +30,26 @@ export const Search = () => {
         })
         return () => cancel = true;
     }, [search])
-
+    useEffect(()=>{
+        console.log('added');
+        
+    },[user,user.chats])
     const searchResult = (res, i) =>
         <div className="chatRow" key={i} onClick={() => { setSelected(res); }}>
             <img className="pfp" src={res.avatar || "SVG/pfp.svg"} alt="" />
             <span>{res.username}</span>
         </div>
-    
-    const handleAdd = (recipient) => {
-        addChat(user, recipient)
-            .then((id) => {
-                console.log(id);
-            
-                onSnapshot(doc(db, 'chats', id), (snap) => {
-                    if (snap.data().id === chat?.id) { setChat(snap.data().id); }
-                })
-            })
+
+    const handleAdd = async (recipient, chatInStore) => {
+        const chatid = await addChat(user, recipient)
+        onSnapshot(doc(db, 'chats', chatid), (s) => {
+
+            // console.log(chatid, chatInStore(), s.data());
+            // if (chatInStore() === s.data().id) {
+            //     console.log('fdsafasdf');
+            //     setChat(chatid)
+            // }
+        })
     }
 
     return (
@@ -54,7 +58,7 @@ export const Search = () => {
                 <Prompt
                     title='Add user'
                     desc={'Are you sure you want to add ' + selected.username + ' ?'}
-                    options={[{ label: 'Confirm', handle: () => { handleAdd(selected); setSelected(null); } }, { label: 'Cancel', handle: () => { setSelected(null) } }]}
+                    options={[{ label: 'Confirm', handle: () => { handleAdd(selected, chat?.id); setSelected(null); } }, { label: 'Cancel', handle: () => { setSelected(null) } }]}
                 />}
             <div className="search">
                 <input type="text" placeholder="Search for users..." value={filter} onChange={(e) => { setFilter(e.target.value) }} />

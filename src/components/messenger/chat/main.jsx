@@ -3,12 +3,7 @@ import { Input } from "./input";
 import { RecipientHeader } from "./recipient";
 import { Texts } from "./texts"; 
 
-function Chat() { 
-
- 
-
-
-
+function Chat() {  
     return (
         <div className="chat">
             <RecipientHeader />

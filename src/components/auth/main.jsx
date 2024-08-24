@@ -8,7 +8,7 @@ function Auth() {
     return (
 
         <div className="auth">
-            {(loading || user) && <>'Loading...'</>}
+            {(loading || user) && <h1>'Loading...'</h1>}
             <Signin />
             <Signup />
         </div>

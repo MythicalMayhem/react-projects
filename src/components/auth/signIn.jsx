@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from '../../lib/firebase'
 import { userStore } from "../../stores/userStore"
 function Signin() {
-    const {  setLoading } = userStore()
+    const { setLoading } = userStore()
 
     const handleSignin = async (e) => {
         setLoading(true)
@@ -10,7 +10,12 @@ function Signin() {
             e.preventDefault()
             const formData = new FormData(e.target)
             const { email, password } = Object.fromEntries(formData)
-            await signInWithEmailAndPassword(auth, email, password)/*.then(console.log)*/.catch(console.log)
+            await signInWithEmailAndPassword(auth, email, password)
+                .then((res) => {
+                    console.log(res);
+                    
+                })
+            /*.then(console.log)*/.catch(console.log)
         } catch (error) {
             console.log(error);
         } finally {

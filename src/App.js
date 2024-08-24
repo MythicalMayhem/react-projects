@@ -8,10 +8,18 @@ import { userStore } from './stores/userStore';
 import './App.css';
 import Auth from './components/auth/main.jsx';
 import Messenger from './components/messenger/main.jsx';
+import { chatStore } from './stores/chatStore.js';
 function App() {
   const { user, loading, setLoading, updateUserData } = userStore()
-
-  useEffect(() => onAuthStateChanged(auth, (u) => { updateUserData(u?.uid).then(() => { setLoading(false) }) }), [updateUserData, setLoading])
+  const { setChat  } = chatStore()
+  useEffect(() => onAuthStateChanged(auth, (u) => {
+    setChat()
+    updateUserData(u?.uid).then((chats) => { 
+      
+      setLoading(false) 
+    
+    })
+  }), [updateUserData, setLoading, setChat])
 
 
   const handleLogout = () => {
@@ -33,15 +41,15 @@ function App() {
   return (
     <>
       <div className='floats'>
-        {users.map((u) => (
+        {/* {users.map((u) => (
           <button key={u.email} onClick={async () => { setLoading(true); signInWithEmailAndPassword(auth, u.email, u.password).then(() => { setLoading(false) }) }}>
             {u.username}
           </button>
-        ))}
+        ))} */}
 
         <button onClick={handleLogout}> Logout</button>
       </div>
-      {loading ? 'Loading...' : ((user) ? < Messenger /> : <Auth />)}
+      {loading ? <h1>Loading...</h1> : ((user) ? < Messenger /> : <Auth />)}
 
     </>
 

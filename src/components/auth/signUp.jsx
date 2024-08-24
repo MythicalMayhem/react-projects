@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth"
 import { db } from "../../lib/firebase"
 import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
@@ -26,7 +26,7 @@ function Signup() {
                     }
                     const userRef = doc(db, "users", userCredential.user.uid)
                     setDoc(userRef, user)
-                }).then(() => signInWithEmailAndPassword(auth, email, password)).catch(console.log)
+                })//.then(() => signInWithEmailAndPassword(auth, email, password)).catch(console.log)
         } catch (error) {
             console.log(error);
         } finally {
