@@ -15,7 +15,7 @@ export const userStore = create((set) => ({
 
         if (userDoc.exists()) { set({ user: userDoc.data() }) }
         else { set({ user: null }) }
-        return userDoc.data().chats
+        return userDoc.data()?.chats
     },
     addChat: async (currentUser, recipient) => {
         const chatId = getChatId(currentUser, recipient)

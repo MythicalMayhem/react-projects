@@ -47,7 +47,7 @@ function App() {
           </button>
         ))} */}
 
-        <button onClick={handleLogout}> Logout</button>
+        {user && <button onClick={handleLogout}> Logout</button>}
       </div>
       {loading ? <h1>Loading...</h1> : ((user) ? < Messenger /> : <Auth />)}
 
